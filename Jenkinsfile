@@ -3,9 +3,12 @@ pipeline {
     stages {
         stage('git repo & clean') {
             steps {
-               bat "rmdir  /s /q SpringBoot-jenkins"
+                deleteDir()
                 bat "git clone https://github.com/manibharathi0479/SpringBoot-jenkins.git"
-                bat "mvn clean -f SpringBoot-jenkins"
+                dir('SpringBoot-jenkins') {
+          // -B = batch mode (less interactive logs), adjust to mvnw if available
+                bat 'mvn -B clean package'
+        }
             }
         }
         stage('install') {
