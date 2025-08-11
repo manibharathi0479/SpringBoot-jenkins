@@ -5,26 +5,23 @@ pipeline {
             steps {
                 deleteDir()
                 bat "git clone https://github.com/manibharathi0479/SpringBoot-jenkins.git"
+            }
+        }
+         stage('Build (package)') {
+            steps {
                 dir('SpringBoot-jenkins') {
           // -B = batch mode (less interactive logs), adjust to mvnw if available
-                bat '.\\mvnw.cmd -B clean package'
+                 bat 'mvn -B clean package'
         }
-            }
-        }
-        stage('install') {
-            steps {
-                bat "mvn install -f SpringBoot-jenkins"
-            }
-        }
+      }
+    }
         stage('test') {
             steps {
-                bat "mvn test -f SpringBoot-jenkins"
+                 dir('SpringBoot-jenkins') {
+                bat "mvn test "
+                 }
             }
         }
-        stage('package') {
-            steps {
-                bat "mvn package -f SpringBoot-jenkins"
-            }
-        }
+      
     }
 }
