@@ -18,7 +18,7 @@ pipeline {
         stage('test') {
             steps {
                  dir('SpringBoot-jenkins') {
-                bat "mvn test "
+                bat '.\\mvnw.cmd test'
                  }
             }
         }
