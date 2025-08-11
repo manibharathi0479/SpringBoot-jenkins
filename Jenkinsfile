@@ -11,7 +11,7 @@ pipeline {
             steps {
                 dir('SpringBoot-jenkins') {
           // -B = batch mode (less interactive logs), adjust to mvnw if available
-                 bat 'mvn -B clean package'
+                 bat '.\\mvnw.cmd -B clean package'
         }
       }
     }
